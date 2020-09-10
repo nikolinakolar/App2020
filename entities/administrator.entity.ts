@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 
 @Entity()
 export class Administrator {
-    @PrimaryGeneratedColumn({ name: 'administrator', type: 'int', unsigned: true })
+    @PrimaryGeneratedColumn({ name: 'administrator_id', type: 'int', unsigned: true })
     administratorId: number;
 
     @Column({ type: 'varchar', length: '32', unique: true })
