@@ -4,6 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseCongiduration } from 'config/database.configuration';
 import { Administrator } from 'entities/administrator.entity';
 import { AdministratorService } from './services/administrator/administrator.service';
+import { AllergenImage } from 'entities/allergen-image.entity';
+import { Allergen } from 'entities/allergen.entity';
+import { Order } from 'entities/order.entity';
+import { PizzaPrice } from 'entities/pizza-price.entity';
+import { PizzaSize } from 'entities/pizza-size.entity';
+import { Pizza } from 'entities/pizza.entity';
+import { Topping } from 'entities/topping.entity';
+import { User } from 'entities/user.entity';
 
 
 @Module({
@@ -15,7 +23,17 @@ import { AdministratorService } from './services/administrator/administrator.ser
       username: databaseCongiduration.username,
       password: databaseCongiduration.password,
       database: databaseCongiduration.database,
-      entities: [ Administrator ]
+      entities: [ 
+        Administrator,
+        AllergenImage,
+        Allergen,
+        Order,
+        PizzaPrice,
+        PizzaSize,
+        Pizza,
+        Topping,
+        User 
+      ]
     }),
     TypeOrmModule.forFeature([ Administrator ])
   ],
