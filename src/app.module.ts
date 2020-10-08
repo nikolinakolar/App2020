@@ -13,6 +13,10 @@ import { Pizza } from 'entities/pizza.entity';
 import { Topping } from 'entities/topping.entity';
 import { User } from 'entities/user.entity';
 import { AdministratorController } from './controllers/api/administrator.controller';
+import { ToppingController } from './controllers/api/topping.controller';
+import { ToppingService } from './services/topping/topping.service';
+import { PizzaService } from './services/pizza/pizza.service';
+import { PizzaController } from './controllers/api/pizza.controller';
 
 
 @Module({
@@ -36,12 +40,22 @@ import { AdministratorController } from './controllers/api/administrator.control
         User 
       ]
     }),
-    TypeOrmModule.forFeature([ Administrator ])
+    TypeOrmModule.forFeature([ 
+      Administrator,
+      Topping,
+      Pizza,
+    ])
   ],
   controllers: [
     AppController,
-    AdministratorController
+    AdministratorController,
+    ToppingController,
+    PizzaController,
   ],
-  providers: [AdministratorService],
+  providers: [
+    AdministratorService,
+    ToppingService,
+    PizzaService,
+  ],
 })
 export class AppModule {}

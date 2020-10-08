@@ -35,7 +35,7 @@ export class Topping {
   @OneToMany(() => Allergen, (allergen) => allergen.topping)
   allergens: Allergen[];
 
-  @ManyToOne(() => Pizza, (pizza) => pizza.toppings, {
+  @ManyToOne(() => Allergen, (pizza) => pizza.topping, {
     onDelete: "CASCADE",
     onUpdate: "RESTRICT",
   })
