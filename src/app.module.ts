@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './controllers/app.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { databaseCongiduration } from 'config/database.configuration';
@@ -17,6 +17,8 @@ import { ToppingController } from './controllers/api/topping.controller';
 import { ToppingService } from './services/topping/topping.service';
 import { PizzaService } from './services/pizza/pizza.service';
 import { PizzaController } from './controllers/api/pizza.controller';
+import { AuthController } from './controllers/api/auth.controller';
+import { AuthMiddleware } from './middlewares/auth.middleware';
 
 
 @Module({
@@ -44,6 +46,8 @@ import { PizzaController } from './controllers/api/pizza.controller';
       Administrator,
       Topping,
       Pizza,
+      PizzaPrice,
+      Allergen,
     ])
   ],
   controllers: [
@@ -51,11 +55,23 @@ import { PizzaController } from './controllers/api/pizza.controller';
     AdministratorController,
     ToppingController,
     PizzaController,
+    AuthController,
   ],
   providers: [
     AdministratorService,
     ToppingService,
     PizzaService,
   ],
+  exports: [
+    AdministratorService,
+  ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+    .apply(AuthMiddleware)
+    .exclude('auth/*')
+    .forRoutes('api/*');
+  }
+
+}
