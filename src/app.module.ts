@@ -19,6 +19,8 @@ import { PizzaService } from './services/pizza/pizza.service';
 import { PizzaController } from './controllers/api/pizza.controller';
 import { AuthController } from './controllers/api/auth.controller';
 import { AuthMiddleware } from './middlewares/auth.middleware';
+import { Photo } from 'entities/photo.entity';
+import { PhotoService } from './services/photo/photo.service';
 
 
 @Module({
@@ -39,15 +41,22 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
         PizzaSize,
         Pizza,
         Topping,
-        User 
+        User,
+        Photo
+        
       ]
     }),
     TypeOrmModule.forFeature([ 
       Administrator,
-      Topping,
-      Pizza,
-      PizzaPrice,
-      Allergen,
+        AllergenImage,
+        Allergen,
+        Order,
+        PizzaPrice,
+        PizzaSize,
+        Pizza,
+        Topping,
+        User,
+        Photo
     ])
   ],
   controllers: [
@@ -61,6 +70,7 @@ import { AuthMiddleware } from './middlewares/auth.middleware';
     AdministratorService,
     ToppingService,
     PizzaService,
+    PhotoService,
   ],
   exports: [
     AdministratorService,

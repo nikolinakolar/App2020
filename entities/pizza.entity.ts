@@ -9,6 +9,7 @@ import {
 } from "typeorm";
 import { Allergen } from "./allergen.entity";
 import { Order } from "./order.entity";
+import { Photo } from "./photo.entity";
 import { PizzaPrice } from "./pizza-price.entity";
 import { PizzaSize } from "./pizza-size.entity";
 import { Topping } from "./topping.entity";
@@ -26,8 +27,6 @@ export class Pizza {
   @Column({ type: "text"})
   decription: string;
 
-  @Column({ type: "varchar", name: "image_path", length: 128 })
-  imagePath: string;
 
   @Column({ type: "int", name: "order_id", unsigned: true })
   orderId: number;
@@ -50,4 +49,7 @@ export class Pizza {
 
   @OneToMany(() => Topping, (topping) => topping.pizza)
   toppings: Topping[];
+
+  @OneToMany(() => Photo, (photo) => photo.pizza)
+  photos: Photo[];
 }
