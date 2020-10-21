@@ -1,6 +1,6 @@
 import { Controller } from "@nestjs/common";
 import { Crud } from "@nestjsx/crud";
-import { Topping } from "entities/topping.entity";
+import { Topping } from "src/entities/topping.entity";
 import { ToppingService } from "src/services/topping/topping.service";
 
 @Controller('api/topping')

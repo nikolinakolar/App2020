@@ -2,11 +2,11 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Injectable } from "@nestjs/common";
 import { TypeOrmCrudService } from "@nestjsx/crud-typeorm";
-import { Pizza } from "entities/pizza.entity";
+import { Pizza } from "src/entities/pizza.entity";
 import { AddPizzaDto } from "src/dtos/pizza/add.pizza.dto";
 import { ApiResponse } from "src/misc/api.response.class";
-import { PizzaPrice } from "entities/pizza-price.entity";
-import { Allergen } from "entities/allergen.entity";
+import { PizzaPrice } from "src/entities/pizza-price.entity";
+import { Allergen } from "src/entities/allergen.entity";
 
 @Injectable()
 export class PizzaService extends TypeOrmCrudService<Pizza> {

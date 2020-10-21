@@ -2,12 +2,12 @@ import { Body, Controller, Delete, Param, Patch, Post, Req, UploadedFile, UseInt
 import { FileFieldsInterceptor } from "@nestjs/platform-express";
 import { Crud } from "@nestjsx/crud";
 import { StorageConfig } from "config/storage.config";
-import { Pizza } from "entities/pizza.entity";
+import { Pizza } from "src/entities/pizza.entity";
 import { AddPizzaDto } from "src/dtos/pizza/add.pizza.dto";
 import { PizzaService } from "src/services/pizza/pizza.service";
 import { diskStorage } from "multer";
 import { FileInterceptor } from "@nestjs/platform-express";
-import { Photo } from "entities/photo.entity";
+import { Photo } from "src/entities/photo.entity";
 import { ApiResponse } from "src/misc/api.response.class";
 import { PhotoService } from "src/services/photo/photo.service";
 import * as fileType from 'file-type';
