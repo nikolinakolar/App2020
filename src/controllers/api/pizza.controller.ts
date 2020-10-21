@@ -10,6 +10,9 @@ import { FileInterceptor } from "@nestjs/platform-express";
 import { Photo } from "entities/photo.entity";
 import { ApiResponse } from "src/misc/api.response.class";
 import { PhotoService } from "src/services/photo/photo.service";
+import * as fileType from 'file-type';
+import * as fs from 'fs';
+import * as sharp from 'sharp';
 
 @Controller('api/pizza')
 @Crud({
@@ -107,14 +110,14 @@ export class PizzaController {
         })
     )
     async uploadPhoto(@Param('id') pizzaId: number, @UploadedFile() photo, @Req() req): Promise<Photo | ApiResponse> {
-        let imagePath = photo.filename;
+        
 
-        /*if (req.fileFilterError !== undefined) {
+        if (req.fileFilterError !== undefined) {
             return new ApiResponse('error', -4001, req.fileFilterError);
         }
 
         if (!photo) {
-            return new ApiResponse('error', -4002, 'no photo');
+            return new ApiResponse('error', -4002, 'Bad file extension!');
         }
 
         const fileTypeResult = await fileType.fromFile(photo.path);
@@ -129,7 +132,7 @@ export class PizzaController {
             return new ApiResponse('error', -4004, 'Wrong file content');
         }
 
-        await this.createResizedImage(photo, StorageConfig.photo.resize.square);*/
+        await this.createResizedImage(photo, StorageConfig.photo.resize.square);
 
         const newPhoto: Photo = new Photo();
         newPhoto.pizzaId = pizzaId;
@@ -144,7 +147,7 @@ export class PizzaController {
         return savedPhoto;
     }
 
-    /*async createResizedImage(photo, resizeOptions) {
+    async createResizedImage(photo, resizeOptions) {
         const destination = StorageConfig.photo.directory + resizeOptions.directory + photo.filename;         
 
         await sharp(photo.path).resize({ fit: 'cover', width: resizeOptions.width, height: resizeOptions.height }).toFile(destination);
@@ -179,7 +182,7 @@ export class PizzaController {
 
         return new ApiResponse("ok", 0, 'One photo has been deleted.');
     }
-    @Patch(':id')
+    /*@Patch(':id')
     async editById(@Param('id') id: number, @Body() data: EditPizzaDto) {
         return await this.service.editPizza(id, data);
     }*/
