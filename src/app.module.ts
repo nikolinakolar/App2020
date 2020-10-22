@@ -21,6 +21,15 @@ import { AuthController } from './controllers/api/auth.controller';
 import { AuthMiddleware } from './middlewares/auth.middleware';
 import { Photo } from 'src/entities/photo.entity';
 import { PhotoService } from './services/photo/photo.service';
+import { AllergenService } from './services/allergen/allergen.service';
+import { PizzaSizeService } from './services/pizzasize/pizzasize.service';
+import { PizzaPriceService } from './services/pizzaprice/pizzaprice.service';
+import { PhotoController } from './controllers/api/photo.controller';
+import { AllergenController } from './controllers/api/allergen.controller';
+import { AllergenImageController } from './controllers/api/allergenimage.controller';
+import { PizzaSizeController } from './controllers/api/pizzasize.controller';
+import { PizzaPriceController } from './controllers/api/pizzaprice.controller';
+import { AllergenImageService } from './services/allergenimage/allergenimage.service';
 
 
 @Module({
@@ -65,15 +74,25 @@ import { PhotoService } from './services/photo/photo.service';
     ToppingController,
     PizzaController,
     AuthController,
+    PhotoController,
+    AllergenController,
+    AllergenImageController,
+    PizzaSizeController,
+    PizzaPriceController
+
   ],
   providers: [
     AdministratorService,
     ToppingService,
     PizzaService,
     PhotoService,
+    AllergenService,
+    PizzaSizeService,
+    PizzaPriceService,
+    AllergenImageService
   ],
   exports: [
-    AdministratorService,
+    AdministratorService
   ],
 })
 export class AppModule implements NestModule {

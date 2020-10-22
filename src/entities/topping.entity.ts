@@ -3,6 +3,8 @@ import {
   Entity,
   Index,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -41,4 +43,13 @@ export class Topping {
   })
   @JoinColumn([{ name: "pizza_id", referencedColumnName: "pizzaId" }])
   pizza: Pizza;
+
+  @ManyToMany(type => Pizza)
+  @JoinTable({
+    name: 'topping',
+    joinColumn: { name: 'topping_id', referencedColumnName: 'toppingId' },
+    inverseJoinColumn: { name: 'pizza_id', referencedColumnName: 'pizzaId' },
+  })
+  pizzas: Pizza[];
 }
+

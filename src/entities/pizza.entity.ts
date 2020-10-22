@@ -1,8 +1,11 @@
+import { ToppingController } from "src/controllers/api/topping.controller";
 import {
   Column,
   Entity,
   Index,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -32,6 +35,14 @@ export class Pizza {
   orderId: number;
 
   @OneToMany(() => Allergen, (allergen) => allergen.pizza)
+  allergen: Allergen[];
+
+  @ManyToMany(type => Allergen)
+  @JoinTable({
+    name: 'allergen',
+    joinColumn: { name: 'pizza_id', referencedColumnName: 'pizzaId' },
+    inverseJoinColumn: { name: 'allergen_id', referencedColumnName: 'allergenId' },
+  })
   allergens: Allergen[];
 
   @ManyToOne(() => Order, (order) => order.pizzas, {
@@ -48,6 +59,14 @@ export class Pizza {
   pizzaSizes: PizzaSize[];
 
   @OneToMany(() => Topping, (topping) => topping.pizza)
+  topping: Topping[];
+
+  @ManyToMany(type => Topping)
+  @JoinTable({
+    name: 'topping',
+    joinColumn: { name: 'pizza_id', referencedColumnName: 'pizzaId' },
+    inverseJoinColumn: { name: 'topping_id', referencedColumnName: 'toppingId' },
+  })
   toppings: Topping[];
 
   @OneToMany(() => Photo, (photo) => photo.pizza)
