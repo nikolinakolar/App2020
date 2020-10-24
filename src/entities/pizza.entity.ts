@@ -28,7 +28,7 @@ export class Pizza {
   name: string;
 
   @Column({ type: "text"})
-  decription: string;
+  description: string;
 
 
   @Column({ type: "int", name: "order_id", unsigned: true })

@@ -13,6 +13,7 @@ import { PhotoService } from "src/services/photo/photo.service";
 import * as fileType from 'file-type';
 import * as fs from 'fs';
 import * as sharp from 'sharp';
+import { EditPizzaDto } from "src/dtos/pizza/edit.pizza.dto";
 
 @Controller('api/pizza')
 @Crud({
@@ -48,6 +49,9 @@ import * as sharp from 'sharp';
             }
             
         }
+    },
+    routes: {
+        exclude: [ 'updateOneBase', 'replaceOneBase', 'deleteOneBase'],
     }
 })
 export class PizzaController {
@@ -60,6 +64,11 @@ export class PizzaController {
     createFullPizza( @Body() data: AddPizzaDto) {
        return this.service.createFullPizza(data);
         
+    }
+
+    @Patch(':id')
+    async editById(@Param('id') id: number, @Body() data: EditPizzaDto) {
+        return await this.service.editPizza(id, data);
     }
 
     @Post(':id/uploadPhoto') // POST http://localhost:3000/api/pizza/:id/uploadPhoto/
@@ -182,8 +191,5 @@ export class PizzaController {
 
         return new ApiResponse("ok", 0, 'One photo has been deleted.');
     }
-    /*@Patch(':id')
-    async editById(@Param('id') id: number, @Body() data: EditPizzaDto) {
-        return await this.service.editPizza(id, data);
-    }*/
+
 }
