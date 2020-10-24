@@ -11,7 +11,6 @@ import { PizzaPrice } from 'src/entities/pizza-price.entity';
 import { PizzaSize } from 'src/entities/pizza-size.entity';
 import { Pizza } from 'src/entities/pizza.entity';
 import { Topping } from 'src/entities/topping.entity';
-import { User } from 'src/entities/user.entity';
 import { AdministratorController } from './controllers/api/administrator.controller';
 import { ToppingController } from './controllers/api/topping.controller';
 import { ToppingService } from './services/topping/topping.service';
@@ -30,6 +29,8 @@ import { AllergenImageController } from './controllers/api/allergenimage.control
 import { PizzaSizeController } from './controllers/api/pizzasize.controller';
 import { PizzaPriceController } from './controllers/api/pizzaprice.controller';
 import { AllergenImageService } from './services/allergenimage/allergenimage.service';
+import { ToppingImage } from './entities/topping-image.entity';
+import { ToppingImageService } from './services/toppingImage/toppingimage.service';
 
 
 @Module({
@@ -50,8 +51,8 @@ import { AllergenImageService } from './services/allergenimage/allergenimage.ser
         PizzaSize,
         Pizza,
         Topping,
-        User,
-        Photo
+        Photo,
+        ToppingImage
         
       ]
     }),
@@ -64,8 +65,8 @@ import { AllergenImageService } from './services/allergenimage/allergenimage.ser
         PizzaSize,
         Pizza,
         Topping,
-        User,
-        Photo
+        Photo,
+        ToppingImage
     ])
   ],
   controllers: [
@@ -78,7 +79,8 @@ import { AllergenImageService } from './services/allergenimage/allergenimage.ser
     AllergenController,
     AllergenImageController,
     PizzaSizeController,
-    PizzaPriceController
+    PizzaPriceController,
+    ToppingController
 
   ],
   providers: [
@@ -89,7 +91,8 @@ import { AllergenImageService } from './services/allergenimage/allergenimage.ser
     AllergenService,
     PizzaSizeService,
     PizzaPriceService,
-    AllergenImageService
+    AllergenImageService,
+    ToppingImageService
   ],
   exports: [
     AdministratorService

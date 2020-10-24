@@ -7,11 +7,9 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { User } from "./user.entity";
 import { Pizza } from "./pizza.entity";
 
 
-@Index("fk_order_user_id_idx", ["userId"], {})
 @Entity("order")
 export class Order {
   @PrimaryGeneratedColumn({ type: "int", name: "order_id", unsigned: true })
@@ -20,15 +18,17 @@ export class Order {
   @Column({ type: "enum", enum: ["accepted", "rejected", "pending"] })
   status: "accepted" | "rejected" | "pending";
 
-  @Column({ type: "int", name: "user_id", unsigned: true })
-  userId: number;
+  @Column("varchar", { name: "customer_name", length: 64 })
+  customerName: string;
 
-  @ManyToOne(() => User, (user) => user.orders, {
-    onDelete: "RESTRICT",
-    onUpdate: "CASCADE",
+  @Column("varchar", { name: "customer_address", length: 200 })
+  customerAddress: string;
+
+  @Column("varchar", {
+    name: "customer_phone",
+    length: 64
   })
-  @JoinColumn([{ name: "user_id", referencedColumnName: "userId" }])
-  user: User;
+  customerPhone: string;
 
   @OneToMany(() => Pizza, (pizza) => pizza.order)
   pizzas: Pizza[];

@@ -11,6 +11,7 @@ import {
 } from "typeorm";
 import { Allergen } from "./allergen.entity";
 import { Pizza } from "./pizza.entity";
+import { ToppingImage } from "./topping-image.entity";
 
 @Index("fk_topping_pizza_id_idx", ["pizzaId"], {})
 @Index("name_UNIQUE", ["name"], { unique: true })
@@ -21,9 +22,6 @@ export class Topping {
 
   @Column({ type: "varchar", unique: true, length: 64 })
   name: string;
-
-  @Column({ type: "varchar", name: "image_path", length: 128 })
-  imagePath: string;
 
   @Column({ type: "text" })
   description: string;
@@ -51,5 +49,8 @@ export class Topping {
     inverseJoinColumn: { name: 'pizza_id', referencedColumnName: 'pizzaId' },
   })
   pizzas: Pizza[];
+
+  @OneToMany(() => ToppingImage, (ToppingImage) => ToppingImage.topping)
+  toppingImage: ToppingImage[];
 }
 
