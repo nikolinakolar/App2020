@@ -9,4 +9,12 @@ export class ToppingImageService extends TypeOrmCrudService<ToppingImage> {
   constructor(@InjectRepository(ToppingImage) private readonly toppingImage: Repository<ToppingImage>) {
     super(toppingImage)
   }
+
+  async add(newToppingImage: ToppingImage): Promise<ToppingImage> {
+    return await this.toppingImage.save(newToppingImage)
+  }
+
+  async deleteById(id: number) {
+    return await this.toppingImage.delete(id);
+}
 }

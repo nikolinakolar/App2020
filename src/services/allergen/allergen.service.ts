@@ -9,4 +9,6 @@ export class AllergenService extends TypeOrmCrudService<Allergen> {
   constructor(@InjectRepository(Allergen) private readonly allergen: Repository<Allergen>) {
     super(allergen)
   }
+
+
 }

@@ -11,6 +11,34 @@ export const StorageConfig = {
             height: 400,
         },
       }
+    },
+
+    toppingImage: {
+      directory:  '../storage/toppingImage/',
+      urlPrefix: '/assets/toppingImage',
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      photoMaxFileSize: 1024 * 1024 * 4,
+      resize: {
+        square: {
+            directory: 'resized/',
+            width: 100,
+            height: 100,
+        },
+      }
+    },
+
+    allergenImage: {
+      directory:  '../storage/allergenImage/',
+      urlPrefix: '/assets/allergenImage',
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+      photoMaxFileSize: 1024 * 1024 * 4,
+      resize: {
+        square: {
+            directory: 'resized/',
+            width: 80,
+            height: 80,
+        },
+      }
     }
     
   }
