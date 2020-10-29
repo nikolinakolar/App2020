@@ -31,6 +31,10 @@ import { PizzaPriceController } from './controllers/api/pizzaprice.controller';
 import { AllergenImageService } from './services/allergenimage/allergenimage.service';
 import { ToppingImage } from './entities/topping-image.entity';
 import { ToppingImageService } from './services/toppingImage/toppingimage.service';
+import { CartService } from './services/cart/cart.service';
+import { CartController } from './controllers/api/cart.controller';
+import { Cart } from './entities/cart.entity';
+import { PizzaCart } from './entities/pizza-cart.entity';
 
 
 @Module({
@@ -52,7 +56,9 @@ import { ToppingImageService } from './services/toppingImage/toppingimage.servic
         Pizza,
         Topping,
         Photo,
-        ToppingImage
+        ToppingImage,
+        Cart,
+        PizzaCart
         
       ]
     }),
@@ -66,7 +72,9 @@ import { ToppingImageService } from './services/toppingImage/toppingimage.servic
         Pizza,
         Topping,
         Photo,
-        ToppingImage
+        ToppingImage,
+        Cart,
+        PizzaCart
     ])
   ],
   controllers: [
@@ -80,7 +88,8 @@ import { ToppingImageService } from './services/toppingImage/toppingimage.servic
     AllergenImageController,
     PizzaSizeController,
     PizzaPriceController,
-    ToppingController
+    ToppingController,
+    CartController
 
   ],
   providers: [
@@ -92,7 +101,8 @@ import { ToppingImageService } from './services/toppingImage/toppingimage.servic
     PizzaSizeService,
     PizzaPriceService,
     AllergenImageService,
-    ToppingImageService
+    ToppingImageService,
+    CartService
   ],
   exports: [
     AdministratorService

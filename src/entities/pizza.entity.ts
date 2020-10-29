@@ -11,8 +11,8 @@ import {
   PrimaryGeneratedColumn,
 } from "typeorm";
 import { Allergen } from "./allergen.entity";
-import { Order } from "./order.entity";
 import { Photo } from "./photo.entity";
+import { PizzaCart } from "./pizza-cart.entity";
 import { PizzaPrice } from "./pizza-price.entity";
 import { PizzaSize } from "./pizza-size.entity";
 import { Topping } from "./topping.entity";
@@ -45,13 +45,6 @@ export class Pizza {
   })
   allergens: Allergen[];
 
-  @ManyToOne(() => Order, (order) => order.pizzas, {
-    onDelete: "RESTRICT",
-    onUpdate: "CASCADE",
-  })
-  @JoinColumn([{ name: "order_id", referencedColumnName: "orderId" }])
-  order: Order;
-
   @OneToMany(() => PizzaPrice, (pizzaPrice) => pizzaPrice.pizza)
   pizzaPrices: PizzaPrice[];
 
@@ -71,4 +64,7 @@ export class Pizza {
 
   @OneToMany(() => Photo, (photo) => photo.pizza)
   photos: Photo[];
+
+  @OneToMany(() => PizzaCart, (pizzaCart) => pizzaCart.pizza)
+  pizzaCarts: PizzaCart[];
 }

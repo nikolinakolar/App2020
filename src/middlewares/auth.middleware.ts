@@ -23,7 +23,6 @@ export class AuthMiddleware implements NestMiddleware {
 
         const tokenString = tokenParts[1];
 
-
         let jwtData: JwtDataAdministratorDto;
 
         try {
@@ -57,7 +56,6 @@ export class AuthMiddleware implements NestMiddleware {
         if (trenutniTimestamp >= jwtData.exp) {
             throw new HttpException('The token has expired', HttpStatus.UNAUTHORIZED);
         }
-
         next();
     }
 
